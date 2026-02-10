@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinclair's Secrets - Horror Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #eee;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: #ff6b6b;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
+        }
+
+        .tagline {
+            font-size: 1.4em;
+            color: #ddd;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .download-section {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border: 2px solid rgba(255, 107, 107, 0.3);
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 20px 50px;
+            font-size: 1.3em;
+            background: linear-gradient(135deg, #ff6b6b, #c92a2a);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.6);
+            background: linear-gradient(135deg, #ff8787, #e03131);
+        }
+
+        .video-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .info-card h3 {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .features {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .features h2 {
+            color: #ff6b6b;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .features ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .features li {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .badge {
+            display: inline-block;
+            margin: 5px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .tagline {
+                font-size: 1.2em;
+            }
+
+            .download-btn {
+                padding: 15px 30px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🕯️ SINCLAIR'S SECRETS 🕯️</h1>
+            <p class="tagline">An intense first-person horror game where the goal is to escape the asylum</p>
+            <div>
+                <img class="badge" src="https://img.shields.io/badge/Made%20with-Unity-57b9d3.svg?style=flat&logo=unity" alt="Made with Unity">
+                <img class="badge" src="https://img.shields.io/badge/Platform-Windows-0078D6.svg?style=flat&logo=windows" alt="Platform Windows">
+            </div>
+        </header>
+
+        <div class="download-section">
+            <h2 style="color: #ff6b6b; margin-bottom: 20px;">🎮 Ready to Play?</h2>
+            <p style="margin-bottom: 30px; font-size: 1.2em;">Download the game now and start your escape!</p>
+            <a href="https://github.com/miracleman14/Sinclair-Secrets-Game/releases/latest" class="download-btn">
+                ⬇️ DOWNLOAD GAME
+            </a>
+            <p style="margin-top: 20px; font-size: 0.9em; color: #aaa;">
+                Click the button above to get the latest release
+            </p>
+        </div>
+
+        <div class="video-section">
+            <h2 style="color: #ff6b6b; margin-bottom: 20px; font-size: 2.5em;">📹 Watch Gameplay</h2>
+            <a href="https://drive.google.com/file/d/1MqMA2XISvSmrQs6V5t1Z1uUbfSf5L-tS/view?usp=sharing" 
+               target="_blank" 
+               style="color: #ff6b6b; font-size: 1.2em; text-decoration: none;">
+                🎬 View Demonstration Video
+            </a>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>📋 How to Play</h3>
+                <ul>
+                    <li>1. Download the ZIP file</li>
+                    <li>2. Extract to a folder</li>
+                    <li>3. Run Sinclair's Secrets.exe</li>
+                    <li>4. Survive and escape!</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>💻 System Requirements</h3>
+                <ul>
+                    <li>OS: Windows 7 or later</li>
+                    <li>Graphics: DirectX 11</li>
+                    <li>Memory: 2GB RAM min</li>
+                    <li>Storage: 150MB space</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>🎯 Game Type</h3>
+                <ul>
+                    <li>Genre: Horror/Thriller</li>
+                    <li>Perspective: First-Person</li>
+                    <li>Setting: Asylum</li>
+                    <li>Objective: Escape</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="features">
+            <h2>🌟 Game Features</h2>
+            <ul>
+                <li>🎮 Immersive first-person gameplay</li>
+                <li>🏚️ Atmospheric asylum environment</li>
+                <li>😱 Intense horror experience</li>
+                <li>🎯 Escape-focused objectives</li>
+                <li>🎨 Built with Unity Engine</li>
+                <li>🔊 Suspenseful sound design</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>Created with Unity Engine | Course Project</p>
+            <p style="margin-top: 10px;">
+                <a href="https://github.com/miracleman14/Sinclair-Secrets-Game" 
+                   style="color: #ff6b6b; text-decoration: none;">
+                    View on GitHub
+                </a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

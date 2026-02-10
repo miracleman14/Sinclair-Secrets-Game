@@ -1,0 +1,70 @@
+name: Create Game Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Create ZIP of game files
+        run: |
+          cd "Sinclair Secrets by Miracle"
+          zip -r "../Sinclair-Secrets-Game.zip" "Sinclair Secrets by Miracle"
+          cd ..
+          ls -lh Sinclair-Secrets-Game.zip
+      
+      - name: Get tag name
+        id: tag_name
+        run: |
+          if [ "${{ github.ref_type }}" == "tag" ]; then
+            echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          else
+            echo "tag=manual-$(date +%Y%m%d-%H%M%S)" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.tag_name.outputs.tag }}
+          release_name: Sinclair's Secrets ${{ steps.tag_name.outputs.tag }}
+          body: |
+            ## Download and Play Sinclair's Secrets
+            
+            **An intense first-person horror game where the goal is to escape the asylum.**
+            
+            ### How to Play:
+            1. Download the `Sinclair-Secrets-Game.zip` file below
+            2. Extract the ZIP file to a folder on your computer
+            3. Navigate to the extracted folder
+            4. Run `Sinclair's Secrets.exe` to start the game
+            
+            ### System Requirements:
+            - Windows 7 or later
+            - DirectX 11 compatible graphics card
+            - 2GB RAM minimum
+            
+            **DEMONSTRATION VIDEO:**  
+            [Watch the demonstration video here](https://drive.google.com/file/d/1MqMA2XISvSmrQs6V5t1Z1uUbfSf5L-tS/view?usp=sharing)
+          draft: false
+          prerelease: false
+      
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Sinclair-Secrets-Game.zip
+          asset_name: Sinclair-Secrets-Game.zip
+          asset_content_type: application/zip

@@ -187,7 +187,7 @@ To enable it:
    - Settings → Pages → Enable (main branch, root folder)
 
 3. **Consider creating a WebGL build:**
-   - Opens Unity project
+   - Open Unity project
    - Build for WebGL
    - Host on itch.io or GitHub Pages
 

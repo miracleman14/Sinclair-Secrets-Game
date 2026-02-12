@@ -1,0 +1,55 @@
+---
+name: Create Game Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Create ZIP of game files
+        run: |
+          cd "Sinclair Secrets by Miracle"
+          zip -r "../Sinclair-Secrets-Game.zip" .
+          cd ..
+          ls -lh Sinclair-Secrets-Game.zip
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Sinclair's Secrets ${{ github.ref_name }}
+          body: |
+            ## Download and Play Sinclair's Secrets
+
+            **An intense first-person horror game where the goal is to
+            escape the asylum.**
+
+            ### How to Play:
+            1. Download the `Sinclair-Secrets-Game.zip` file below
+            2. Extract the ZIP file to a folder on your computer
+            3. Navigate to the extracted folder: `Sinclair Secrets by Miracle`
+            4. Run `Sinclair's Secrets.exe` to start the game
+
+            ### System Requirements:
+            - Windows 7 or later
+            - DirectX 11 compatible graphics card
+            - 2GB RAM minimum
+
+            **DEMONSTRATION VIDEO:**
+            [Watch the demonstration video here](
+            https://drive.google.com/file/d/1MqMA2XISvSmrQs6V5t1Z1uUbfSf5L-tS/view?usp=sharing)
+          files: Sinclair-Secrets-Game.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
